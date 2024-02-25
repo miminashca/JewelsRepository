@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="11" height="11" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="4">
+ <tileset firstgid="1" name="Terrain (16x16)" tilewidth="16" tileheight="16" tilecount="242" columns="22">
+  <image source="sprites/terrain.png" width="352" height="176"/>
+ </tileset>
+ <tileset firstgid="243" name="barry" tilewidth="48" tileheight="48" tilecount="7" columns="7">
+  <image source="barry.png" width="336" height="48"/>
+ </tileset>
+ <tileset firstgid="250" name="Mossy_Tileset_64" tilewidth="64" tileheight="64" tilecount="49" columns="7">
+  <image source="sprites/Mossy_Tileset_64.png" width="448" height="448"/>
+ </tileset>
+ <layer id="6" name="Tile Layer 2" width="11" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,274,0,0,0,0,0,0,0,274,0,
+0,0,0,274,0,0,0,274,0,0,0,
+250,251,251,251,251,251,251,251,251,251,2147483898
+</data>
+ </layer>
+ <objectgroup id="5" name="Object Layer 1">
+  <object id="3" type="Player" gid="243" x="309.343" y="630.062" width="76.9477" height="71.1582"/>
+ </objectgroup>
+ <layer id="1" name="Слой тайлов 1" width="11" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

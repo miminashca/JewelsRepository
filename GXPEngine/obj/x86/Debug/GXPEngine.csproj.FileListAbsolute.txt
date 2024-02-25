@@ -1,0 +1,30 @@
+/Users/sveta/Downloads/HelloGXP/GXPEngine/bin/Debug/GXPEngine.exe
+/Users/sveta/Downloads/HelloGXP/GXPEngine/bin/Debug/GXPEngine.pdb
+/Users/sveta/Downloads/HelloGXP/GXPEngine/obj/x86/Debug/GXPEngine.csproj.AssemblyReference.cache
+/Users/sveta/Downloads/HelloGXP/GXPEngine/obj/x86/Debug/GXPEngine.csproj.CoreCompileInputs.cache
+/Users/sveta/Downloads/HelloGXP/GXPEngine/obj/x86/Debug/GXPEngine.exe
+/Users/sveta/Downloads/HelloGXP/GXPEngine/obj/x86/Debug/GXPEngine.pdb
+/Users/sveta/Documents/study/Game Programming/HelloGXP/GXPEngine/bin/Debug/GXPEngine.exe
+/Users/sveta/Documents/study/Game Programming/HelloGXP/GXPEngine/bin/Debug/GXPEngine.pdb
+/Users/sveta/Documents/study/Game Programming/HelloGXP/GXPEngine/obj/x86/Debug/GXPEngine.csproj.AssemblyReference.cache
+/Users/sveta/Documents/study/Game Programming/HelloGXP/GXPEngine/obj/x86/Debug/GXPEngine.csproj.CoreCompileInputs.cache
+/Users/sveta/Documents/study/Game Programming/HelloGXP/GXPEngine/obj/x86/Debug/GXPEngine.exe
+/Users/sveta/Documents/study/Game Programming/HelloGXP/GXPEngine/obj/x86/Debug/GXPEngine.pdb
+/Users/sveta/Documents/study/Gems/HelloGXP — копия/GXPEngine/bin/Debug/GXPEngine.exe
+/Users/sveta/Documents/study/Gems/HelloGXP — копия/GXPEngine/bin/Debug/GXPEngine.pdb
+/Users/sveta/Documents/study/Gems/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.csproj.AssemblyReference.cache
+/Users/sveta/Documents/study/Gems/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.csproj.CoreCompileInputs.cache
+/Users/sveta/Documents/study/Gems/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.exe
+/Users/sveta/Documents/study/Gems/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.pdb
+/Users/sveta/Documents/study/Gems/game 12.57.20/HelloGXP — копия/GXPEngine/bin/Debug/GXPEngine.exe
+/Users/sveta/Documents/study/Gems/game 12.57.20/HelloGXP — копия/GXPEngine/bin/Debug/GXPEngine.pdb
+/Users/sveta/Documents/study/Gems/game 12.57.20/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.csproj.AssemblyReference.cache
+/Users/sveta/Documents/study/Gems/game 12.57.20/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.csproj.CoreCompileInputs.cache
+/Users/sveta/Documents/study/Gems/game 12.57.20/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.exe
+/Users/sveta/Documents/study/Gems/game 12.57.20/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.pdb
+/Users/sveta/Documents/study/Gems/game 12.57.20 — копия/game/HelloGXP — копия/GXPEngine/bin/Debug/GXPEngine.exe
+/Users/sveta/Documents/study/Gems/game 12.57.20 — копия/game/HelloGXP — копия/GXPEngine/bin/Debug/GXPEngine.pdb
+/Users/sveta/Documents/study/Gems/game 12.57.20 — копия/game/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.csproj.AssemblyReference.cache
+/Users/sveta/Documents/study/Gems/game 12.57.20 — копия/game/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.csproj.CoreCompileInputs.cache
+/Users/sveta/Documents/study/Gems/game 12.57.20 — копия/game/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.exe
+/Users/sveta/Documents/study/Gems/game 12.57.20 — копия/game/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.pdb
