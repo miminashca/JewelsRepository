@@ -28,3 +28,9 @@
 /Users/sveta/Documents/study/Gems/game 12.57.20 — копия/game/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.csproj.CoreCompileInputs.cache
 /Users/sveta/Documents/study/Gems/game 12.57.20 — копия/game/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.exe
 /Users/sveta/Documents/study/Gems/game 12.57.20 — копия/game/HelloGXP — копия/GXPEngine/obj/x86/Debug/GXPEngine.pdb
+/Users/sveta/Documents/study/Gems/GameArduino/game/gameFolder/GXPEngine/obj/x86/Debug/GXPEngine.csproj.AssemblyReference.cache
+/Users/sveta/Documents/study/Gems/GameArduino/game/gameFolder/GXPEngine/obj/x86/Debug/GXPEngine.csproj.CoreCompileInputs.cache
+/Users/sveta/Documents/study/Gems/GameArduino/game/gameFolder/GXPEngine/obj/x86/Debug/GXPEngine.exe
+/Users/sveta/Documents/study/Gems/GameArduino/game/gameFolder/GXPEngine/obj/x86/Debug/GXPEngine.pdb
+/Users/sveta/Documents/study/Gems/GameArduino/game/gameFolder/GXPEngine/bin/Debug/GXPEngine.exe
+/Users/sveta/Documents/study/Gems/GameArduino/game/gameFolder/GXPEngine/bin/Debug/GXPEngine.pdb

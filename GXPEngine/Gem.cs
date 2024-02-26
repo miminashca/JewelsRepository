@@ -21,6 +21,7 @@ public class Gem : Sprite
 	private float angleSpeedX = 4.5f;
 	private bool moves = false;
 	private int currentTime;
+	private int gemType;
 
 	private RotationReader rotationReader;
 	public Gem(RotationReader pRotationReader) : base("sprites/square.png")
@@ -36,6 +37,7 @@ public class Gem : Sprite
 		gemSpeed = 3;
 			
 		randomizer = new Random();
+		gemType = randomizer.Next(1, 4);
 		gemPosType = randomizer.Next(1,4);
 		SetOrigin(width/2, height/2);
 
@@ -47,6 +49,15 @@ public class Gem : Sprite
 			case 2: x = gemSpawnPoint + gemSpawnDistance;
 				break;
 			case 3: x = gemSpawnPoint + gemSpawnDistance*2;
+				break;
+		}
+		switch (gemType)
+		{
+			case 1: color = 0xFF0000;
+				break;
+			case 2: color = 0x00FF00;
+				break;
+			case 3: color = 0x0000FF;
 				break;
 		}
 		
@@ -96,6 +107,11 @@ public class Gem : Sprite
 				velocity.y = -angleSpeedY;
 			}
 		}
+	}
+
+	public int getGemType()
+	{
+		return gemType;
 	}
 }
 

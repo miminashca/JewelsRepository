@@ -23,19 +23,14 @@ using GXPEngine;
             y = player.y;
             
             if (Input.GetKey(Key.A) && rotation > -90) {
-                rotation -= turnSpeed;
+                lastRotation -= turnSpeed;
                 Console.WriteLine(rotation);
             }
             else if (Input.GetKey(Key.D) && rotation < 90) {
-                rotation += turnSpeed;
+                lastRotation += turnSpeed;
                 Console.WriteLine(rotation);
             }
-            else
-            {
-                lastRotation = rotation;
-            }
-
-            lastRotation = rotation;
+            rotation = lastRotation;
         }
 
         public float GetRotation()

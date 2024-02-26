@@ -8,9 +8,7 @@ using GXPEngine;
 
 public class Level : GameObject
 {
-	//TiltPlatform tiltPlatform;
-	ArduinoControls arduinoControls;
-	
+	//ArduinoControls arduinoControls;
 	
 	private Player player;
 	private Gem gem;
@@ -19,7 +17,6 @@ public class Level : GameObject
 	private int currentTime;
 	private ArrayList gems;
 	
-	
 	private int gemDestructionPoint;
 	private int gemSpawnTime;
 	
@@ -27,10 +24,8 @@ public class Level : GameObject
 	public Level(string mapName)
 	{
 		//
-		//tiltPlatform = new TiltPlatform();
-		arduinoControls = new ArduinoControls();
-		//AddChild(tiltPlatform);
-		AddChild(arduinoControls);
+		//arduinoControls = new ArduinoControls();
+		//AddChild(arduinoControls);
 		
 		//
 		gemDestructionPoint = 600;
@@ -55,7 +50,7 @@ public class Level : GameObject
 
 	public void Update()
 	{
-		arduinoControls.UseFile(controller);
+		//arduinoControls.UseFile(controller);
 		
 		//Console.WriteLine(gems.Count);
 		if (Time.time - currentTime >= gemSpawnTime*1000)
