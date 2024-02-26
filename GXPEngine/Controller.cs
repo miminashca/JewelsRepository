@@ -21,21 +21,12 @@ using GXPEngine;
         {
             x = player.x;
             y = player.y;
-            
-            if (Input.GetKey(Key.A) && rotation > -90) {
-                lastRotation -= turnSpeed;
-                Console.WriteLine(rotation);
-            }
-            else if (Input.GetKey(Key.D) && rotation < 90) {
-                lastRotation += turnSpeed;
-                Console.WriteLine(rotation);
-            }
-            rotation = lastRotation;
+
         }
 
         public float GetRotation()
         {
-            return lastRotation;
+            return rotation;
         }
         
     }

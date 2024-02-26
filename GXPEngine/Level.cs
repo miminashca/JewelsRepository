@@ -13,6 +13,7 @@ public class Level : GameObject
 	private Player player;
 	private Gem gem;
 	private RotationReader rotationReader;
+	private ArduinoControls arduinoControls;
 	
 	private int currentTime;
 	private ArrayList gems;
@@ -24,9 +25,7 @@ public class Level : GameObject
 	public Level(string mapName)
 	{
 		//
-		//arduinoControls = new ArduinoControls();
-		//AddChild(arduinoControls);
-		
+
 		//
 		gemDestructionPoint = 600;
 		gemSpawnTime = 3;
@@ -46,11 +45,13 @@ public class Level : GameObject
 		rotationReader = new RotationReader(controller);
 		AddChild(rotationReader);
 
-	}
+        arduinoControls = new ArduinoControls();
+        AddChild(arduinoControls);
+    }
 
 	public void Update()
 	{
-		//arduinoControls.UseFile(controller);
+		arduinoControls.UseFile(controller);
 		
 		//Console.WriteLine(gems.Count);
 		if (Time.time - currentTime >= gemSpawnTime*1000)
