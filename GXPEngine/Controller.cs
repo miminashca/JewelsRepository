@@ -6,7 +6,6 @@ public class Controller : Sprite
 {
     private Player player;
     private int turnSpeed = 1;
-    private float lastRotation;
     public Controller(Player pPlayer) : base("sprites/square.png")
     {
         player = pPlayer;
@@ -21,7 +20,6 @@ public class Controller : Sprite
     {
         x = player.x;
         y = player.y;
-
     }
 
     public float GetRotation()

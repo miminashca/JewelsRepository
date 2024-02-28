@@ -3,7 +3,6 @@ using System.Collections;
 using GXPEngine.Core;
 using System.Drawing;
 using TiledMapParser;
-
 using GXPEngine;
 
 public class Level : GameObject
@@ -12,8 +11,8 @@ public class Level : GameObject
     private Gem gem;
     private RotationReader rotationReader;
     
-    //these lines you added and after that I can no longer run the build. Without them everything works fine.
-    //private ArduinoControls arduinoControls;
+    private ArduinoControls arduinoControls;
+    private LifeCounter lifeCounter;
 	
     private int currentTime;
     private ArrayList gems;
@@ -35,22 +34,27 @@ public class Level : GameObject
         loader.autoInstance = true;
         loader.LoadObjectGroups();
         player = FindObjectOfType<Player>();
-		
+        // Loading the HUD Layer seperately so it doesn't have any collisions
+        //loader.addColliders = false;
+        //loader.LoadObjectGroups(1);
+
         controller = new Controller(player);
         AddChild(controller);
 		
         rotationReader = new RotationReader(controller);
         AddChild(rotationReader);
 
-        //these lines you added and after that I can no longer run the build. Without them everything works fine.
-        //arduinoControls = new ArduinoControls();
-        //AddChild(arduinoControls);
+        arduinoControls = new ArduinoControls();
+        AddChild(arduinoControls);
+
+        lifeCounter = new LifeCounter();
+        AddChild(lifeCounter);
     }
 
     public void Update()
     {
         //these lines you added and after that I can no longer run the build. Without them everything works fine.
-        //arduinoControls.UseFile(controller);
+        arduinoControls.UseFile(controller);
 		
         if (Time.time - currentTime >= gemSpawnTime*1000)
         {

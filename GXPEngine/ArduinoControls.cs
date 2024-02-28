@@ -28,8 +28,8 @@ class ArduinoControls : GameObject
 
     public void UseFile(Controller platform)
     {
-        // Delay the file usage a little to prevent an exception
-        if (Time.time - lastUpdateTime > updateInterval)
+        // Delay the file usage a little to prevent an exception and check if the file is being used
+        if (Time.time - lastUpdateTime > updateInterval && SerialPort.GetPortNames() == null)
         {
             port.Open();
             port.DiscardInBuffer();
