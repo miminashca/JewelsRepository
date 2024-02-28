@@ -15,9 +15,9 @@ public class Gem : Sprite
 	
 	private Vector2 velocity;
 	
-	private float gravity = .2f;
+	private float gravity = 0.6f;
 	private float angle;
-	private float angleSpeedY = 9;
+	private float angleSpeedY = 18;
 	private float angleSpeedX = 4.5f;
 	private bool moves = false;
 	private int currentTime;

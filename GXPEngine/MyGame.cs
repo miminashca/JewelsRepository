@@ -5,9 +5,9 @@ public class MyGame : Game
 {
 
 	private Level level;
-	public MyGame() : base(704, 704, false)
+	public MyGame() : base(704, 704, false, false)
 	{
-		targetFps = 30;
+		targetFps = 60;
 		ResetLevel();
 	}
 	
@@ -26,6 +26,7 @@ public class MyGame : Game
 	// }
 	
 	void Update() {
+		Console.WriteLine(currentFps);
 		if (level != null && Input.GetKeyDown(Key.R))
 		{
 			level.cleanLevel();

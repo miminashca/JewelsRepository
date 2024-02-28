@@ -72,6 +72,7 @@ public class Level : GameObject
             {
                 gems.Remove(gem);
                 gem.Destroy();
+                lifeCounter.ChangeLivesAmount(-1);
             }
 
             // if (Input.GetKeyDown(Key.R))

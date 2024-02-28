@@ -20,11 +20,12 @@ public class LifeCounter : GameObject
     {
         if (previouslifeAmount != lifeAmount)
         {
-            ShowLives();
+            Console.WriteLine("Lives changed.");
+            ChangeShownLives();
         }
     }
 
-    void ShowLives()
+    void ChangeShownLives()
     {
         for (int i = 1; i <= lifeAmount; i++) 
         {
@@ -36,4 +37,9 @@ public class LifeCounter : GameObject
         previouslifeAmount = lifeAmount;
     }
 
+    // Using a public method to change the amount of lives when necessary. Also supports the addition of lives through life packs for example.
+    public void ChangeLivesAmount(int amount)
+    {
+        lifeAmount += amount;
+    }
 }
