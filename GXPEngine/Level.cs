@@ -8,8 +8,9 @@ using GXPEngine;
 
 public class Level : GameObject
 {
+    public bool levelCleaned = false;
     private Player player;
-    private Gem gem;
+    public Gem gem;
     private RotationReader rotationReader;
     
     //these lines you added and after that I can no longer run the build. Without them everything works fine.
@@ -52,7 +53,7 @@ public class Level : GameObject
         //these lines you added and after that I can no longer run the build. Without them everything works fine.
         //arduinoControls.UseFile(controller);
 		
-        if (Time.time - currentTime >= gemSpawnTime*1000)
+        if (Time.time - currentTime >= gemSpawnTime*1000 && levelCleaned == false)
         {
             gem = new Gem(rotationReader);
             //AddChild(gem);
@@ -68,6 +69,24 @@ public class Level : GameObject
                 gems.Remove(gem);
                 gem.Destroy();
             }
+
+            // if (Input.GetKeyDown(Key.R))
+            // {
+            //     gems.Remove(gem);
+            //     gem.Destroy();
+            //     levelCleaned = true;
+            // }
+        }
+    }
+
+    public void cleanLevel()
+    {
+        foreach (Gem gem in gems.ToArray())
+        {
+              gems.Remove(gem);
+              gem.Destroy();
+              levelCleaned = true;
+            
         }
     }
 	
