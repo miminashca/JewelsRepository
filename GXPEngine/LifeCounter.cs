@@ -8,21 +8,29 @@ using TiledMapParser;
 
 public class LifeCounter : GameObject
 {
+    // Public variable that is read-only, so it can't be modified by other classes.
+    public bool gameOver { get; private set; } = false;
     int lifeAmount = 3;
     int previouslifeAmount = 0;
+    Life[] lives;
+
     public LifeCounter()
     {
+        lives = new Life[0];
         x = game.width;
         y = 25;
     }
 
     void Update()
     {
-        if (previouslifeAmount != lifeAmount)
+        if (lifeAmount > 0)
         {
-            Console.WriteLine("Lives changed.");
-            ChangeShownLives();
+            if (previouslifeAmount != lifeAmount)
+            {
+                ChangeShownLives();
+            }
         }
+        else { gameOver = true; }
     }
 
     void ChangeShownLives()
@@ -41,5 +49,11 @@ public class LifeCounter : GameObject
     public void ChangeLivesAmount(int amount)
     {
         lifeAmount += amount;
+        lives = parent.FindObjectsOfType<Life>();
+        foreach (Life life in lives)
+        {
+            life.Remove();
+            life.Destroy();
+        }
     }
 }

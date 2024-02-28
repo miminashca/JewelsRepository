@@ -5,6 +5,7 @@ public class MyGame : Game
 {
 
 	private Level level;
+	LifeCounter lifeCounter;
 	public MyGame() : base(704, 704, false, false)
 	{
 		targetFps = 60;
@@ -26,8 +27,7 @@ public class MyGame : Game
 	// }
 	
 	void Update() {
-		Console.WriteLine(currentFps);
-		if (level != null && Input.GetKeyDown(Key.R))
+		if (level != null && Input.AnyKeyDown() && lifeCounter.gameOver)
 		{
 			level.cleanLevel();
 			ResetLevel();
@@ -83,6 +83,7 @@ public class MyGame : Game
 		
 		level = new Level("level_lab.tmx");
 		AddChild(level);
-
+		// Doing this so the game has access to the game over variable and can reset the game.
+		lifeCounter = FindObjectOfType<LifeCounter>();
 	}
 }

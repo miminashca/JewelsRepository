@@ -91,7 +91,6 @@ public class Level : GameObject
               gems.Remove(gem);
               gem.Destroy();
               levelCleaned = true;
-            
         }
     }
 	
