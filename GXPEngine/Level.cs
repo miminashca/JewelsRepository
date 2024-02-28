@@ -14,8 +14,11 @@ public class Level : GameObject
     
     private ArduinoControls arduinoControls;
     private LifeCounter lifeCounter;
+    private PressButtonText pressButtonText;
+    int currentTextTime;
+    int textBlinkTime = 1250;
 	
-    private int currentTime;
+    private int currentGemTime;
     private ArrayList gems;
 	
     private int gemDestructionPoint;
@@ -28,16 +31,19 @@ public class Level : GameObject
         gemSpawnTime = 3;
 		
         gems = new ArrayList();
-        currentTime = Time.time;
+        currentGemTime = Time.time;
+        currentTextTime = Time.time;
         TiledLoader loader = new TiledLoader(mapName);
         loader.rootObject = this;
         loader.LoadTileLayers(0);
         loader.autoInstance = true;
-        loader.LoadObjectGroups();
+        // I moved the object layer second so it displays below the HUD layer
+        loader.LoadObjectGroups(0);
         player = FindObjectOfType<Player>();
-        // Loading the HUD Layer seperately so it doesn't have any collisions
-        //loader.addColliders = false;
-        //loader.LoadObjectGroups(1);
+        // Loading the HUD Layer seperately so it doesn't have any collisions, although addColliders doesn't seem to work for some reason, so I had to do it manually
+        loader.addColliders = false;
+        loader.LoadObjectGroups(1);
+        pressButtonText = FindObjectOfType<PressButtonText>();
 
         controller = new Controller(player);
         AddChild(controller);
@@ -54,33 +60,39 @@ public class Level : GameObject
 
     public void Update()
     {
-        //these lines you added and after that I can no longer run the build. Without them everything works fine.
-        arduinoControls.UseFile(controller);
-		
-        if (Time.time - currentTime >= gemSpawnTime*1000 && levelCleaned == false)
+        // Stopping action after the player has lost
+        if (!lifeCounter.gameOver)
         {
-            gem = new Gem(rotationReader);
-            //AddChild(gem);
-            gems.Add(gem);
-            currentTime = Time.time;
-        }
+            arduinoControls.UseFile(controller);
 
-        foreach (Gem gem in gems.ToArray())
-        {
-            AddChild(gem);
-            if (gem.y >= gemDestructionPoint)
+            if (Time.time - currentGemTime >= gemSpawnTime * 1000 && levelCleaned == false)
             {
-                gems.Remove(gem);
-                gem.Destroy();
-                lifeCounter.ChangeLivesAmount(-1);
+                gem = new Gem(rotationReader);
+                //AddChild(gem);
+                gems.Add(gem);
+                currentGemTime = Time.time;
             }
 
-            // if (Input.GetKeyDown(Key.R))
-            // {
-            //     gems.Remove(gem);
-            //     gem.Destroy();
-            //     levelCleaned = true;
-            // }
+            foreach (Gem gem in gems.ToArray())
+            {
+                AddChild(gem);
+                if (gem.y >= gemDestructionPoint)
+                {
+                    gems.Remove(gem);
+                    gem.Destroy();
+                    lifeCounter.ChangeLivesAmount(-1);
+                }
+            }
+        }
+        else if (!levelCleaned) { 
+            // Cleaning the level once after the player has failed. 
+            cleanLevel();
+        }
+        else if (Time.time - currentTextTime >= textBlinkTime)
+        {
+            // Blink text at a specific interval before starting a new run
+            pressButtonText.visible = !pressButtonText.visible;
+            currentTextTime = Time.time;
         }
     }
 

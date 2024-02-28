@@ -15,7 +15,7 @@ using System.Drawing;
     public Player(string filename, int colls, int rows, TiledObject obg = null) : base("sprites/barry.png", 7, 1)
     {
         gravity = .3f;
-        speed = 3;
+        speed = 6;
         
         scale=2;  
         SetOrigin(width/2, height/2);

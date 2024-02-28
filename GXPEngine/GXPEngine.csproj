@@ -89,6 +89,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Gem.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="PressButtonText.cs" />
     <Compile Include="RotationReader.cs" />
   </ItemGroup>
   <ItemGroup>
