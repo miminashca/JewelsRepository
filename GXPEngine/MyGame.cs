@@ -8,8 +8,7 @@ public class MyGame : Game
 	public MyGame() : base(704, 704, false)
 	{
 		targetFps = 30;
-		level = new Level("level_lab.tmx");
-		AddChild(level);
+		ResetLevel();
 	}
 	
 	
@@ -27,6 +26,12 @@ public class MyGame : Game
 	// }
 	
 	void Update() {
+		if (level != null && Input.GetKeyDown(Key.R))
+		{
+			level.cleanLevel();
+			ResetLevel();
+			Console.WriteLine("reset");
+		}
 	}
 
 	//Main is the first method that's called when the program is run
@@ -36,5 +41,47 @@ public class MyGame : Game
 		System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 		// Create a "MyGame" and start it:
 		new MyGame().Start();
+	}
+	
+	void ResetLevel()
+	{
+		if (level != null)
+		{
+			level.Destroy();
+			level = null;
+		}
+		// if (hud != null)
+		// {
+		// 	hud.Destroy();
+		// 	hud = null;
+		// }
+		//
+		// if (screen != null)
+		// {
+		// 	screen.Destroy();
+		// 	screen = null;
+		// }
+		//
+		// if (background != null)
+		// {
+		// 	background.Destroyed = true;
+		// 	background.Destroy();
+		// 	background = null;
+		// 	
+		// }
+
+		// if (levelCount == 1)
+		// {
+		// 	level = new Level("levels/level_1.tmx");
+		// 	level.musicChannel1 = level.level1Music.Play();
+		// 	level.musicChannel1.Volume = 0.2f;
+		// 	AddChildAt(level, 1);
+		// }
+
+		//UISound.Play();
+		
+		level = new Level("level_lab.tmx");
+		AddChild(level);
+
 	}
 }
