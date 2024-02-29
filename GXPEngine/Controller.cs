@@ -22,6 +22,15 @@ public class Controller : Sprite
         x = player.x;
         y = player.y;
 
+        //added this to test without arduino
+        if (Input.GetKey(Key.A))
+        {
+            rotation--;
+        }
+        if (Input.GetKey(Key.D))
+        {
+            rotation++;
+        }
     }
 
     public float GetRotation()

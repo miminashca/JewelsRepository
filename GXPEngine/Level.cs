@@ -11,6 +11,7 @@ public class Level : GameObject
     public bool levelCleaned = false;
     private Player player;
     public Gem gem;
+    private Box box;
     private RotationReader rotationReader;
     
     //these lines you added and after that I can no longer run the build. Without them everything works fine.
@@ -20,7 +21,7 @@ public class Level : GameObject
     private ArrayList gems;
 	
     private int gemDestructionPoint;
-    private int gemSpawnTime;
+    public float gemSpawnTime;
 	
     private Controller controller;
     public Level(string mapName)
@@ -43,6 +44,8 @@ public class Level : GameObject
         rotationReader = new RotationReader(controller);
         AddChild(rotationReader);
 
+        box = FindObjectOfType<Box>();
+
         //these lines you added and after that I can no longer run the build. Without them everything works fine.
         //arduinoControls = new ArduinoControls();
         //AddChild(arduinoControls);
@@ -55,7 +58,7 @@ public class Level : GameObject
 		
         if (Time.time - currentTime >= gemSpawnTime*1000 && levelCleaned == false)
         {
-            gem = new Gem(rotationReader);
+            gem = new Gem(rotationReader, player, box, this);
             //AddChild(gem);
             gems.Add(gem);
             currentTime = Time.time;
@@ -69,12 +72,14 @@ public class Level : GameObject
                 gems.Remove(gem);
                 gem.Destroy();
             }
-
-            // if (Input.GetKeyDown(Key.R))
+            //GameObject[] collissions = GetCollisions();
+            // foreach (GameObject collObj in collissions)
             // {
-            //     gems.Remove(gem);
-            //     gem.Destroy();
-            //     levelCleaned = true;
+            //     if (collObj is Box box)
+            //     {
+            //         gems.Remove(gem);
+            //         gem.Destroy();
+            //     }
             // }
         }
     }
