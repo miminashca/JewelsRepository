@@ -26,6 +26,7 @@ public class Level : GameObject
     public float gemSpawnTime;
 	
     private Controller controller;
+    private UIBatteries batteries;
     public Level(string mapName)
     {
         gemDestructionPoint = game.height;
@@ -55,6 +56,10 @@ public class Level : GameObject
         AddChild(lifeCounter);
 
         box = FindObjectOfType<Box>();
+
+        batteries = new UIBatteries(lifeCounter);
+        AddChild(batteries);
+
     }
 
     public void Update()
