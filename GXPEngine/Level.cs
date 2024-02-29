@@ -13,7 +13,7 @@ public class Level : GameObject
     private Box box;
     private RotationReader rotationReader;
     
-    private ArduinoControls arduinoControls;
+    //private ArduinoControls arduinoControls;
     private LifeCounter lifeCounter;
     private PressButtonText pressButtonText;
     int currentTextTime;
@@ -48,8 +48,8 @@ public class Level : GameObject
         rotationReader = new RotationReader(controller);
         AddChild(rotationReader);
 
-        arduinoControls = new ArduinoControls();
-        AddChild(arduinoControls);
+        // arduinoControls = new ArduinoControls();
+        // AddChild(arduinoControls);
 
         lifeCounter = new LifeCounter();
         AddChild(lifeCounter);
@@ -62,7 +62,7 @@ public class Level : GameObject
         // Stopping action after the player has lost
         if (!lifeCounter.gameOver)
         {
-            arduinoControls.UseFile(controller);
+            //arduinoControls.UseFile(controller);
 
             if (Time.time - currentGemTime >= gemSpawnTime * 1000 && levelCleaned == false)
             {
