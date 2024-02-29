@@ -11,7 +11,7 @@ using System.Drawing;
     
     private float gravity;
     private float speed;
-    private int score;
+    public int score { get; private set; }
     
     public Player(string filename, int colls, int rows, TiledObject obg = null) : base("sprites/barry.png", 7, 1)
     {

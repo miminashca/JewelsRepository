@@ -44,8 +44,6 @@ public class LifeCounter : GameObject
             life.x = x - (life.width) * i;
             life.y = y + life.height * 1.2f;
             parent.AddChild(life);
-            Console.WriteLine("Life added at: {0}, {1}", life.x, life.y);
-            Console.WriteLine("Life dimensions: {0}, {1}", life.width, life.height);
         }
         previouslifeAmount = lifeAmount;
     }
@@ -58,14 +56,9 @@ public class LifeCounter : GameObject
             Life life = new Life();
             life.lifeEmpty.x = x - (life.width) * i;
             life.lifeEmpty.y = y + (life.height * 1.2f);
-            life.lifeEmpty.scaleX = 2.3f;
-            life.lifeEmpty.scaleY = 2.1f;
-            life.lifeEmpty.SetOrigin(life.lifeEmpty.width / 2, life.lifeEmpty.height / 2);
             life.lifeEmpty.alpha = 1;
             life.alpha = 0;
             parent.AddChild(life.lifeEmpty);
-            Console.WriteLine("Life Outline added at: {0}, {1}", life.lifeEmpty.x, life.lifeEmpty.y);
-            Console.WriteLine("Life Outline dimensions: {0}, {1}", life.lifeEmpty.width, life.lifeEmpty.height);
         }
     }
 

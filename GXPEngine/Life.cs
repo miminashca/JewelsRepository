@@ -16,6 +16,9 @@ public class Life : Sprite
         SetOrigin(width / 2, height / 2);
         lifeEmpty = new Sprite("sprites/battery_empty.png");
         lifeEmpty.scale = 2;
+        lifeEmpty.scaleX = 2.3f;
+        lifeEmpty.scaleY = 2.1f;
+        lifeEmpty.SetOrigin(lifeEmpty.width / 2, lifeEmpty.height / 2);
         lifeEmpty.alpha = 0;
     }
 }

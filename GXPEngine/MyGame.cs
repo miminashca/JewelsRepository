@@ -5,8 +5,12 @@ public class MyGame : Game
 {
 
 	private Level level;
+	HUD hud;
 	LifeCounter lifeCounter;
-	public MyGame() : base(1920, 1080, false, false)
+	Player player;
+	// High score is stored here so it's not overwritten when the level resets. Default is -1 so the game does not reset again if the player gets no score.
+	int highScore = -1;
+    public MyGame() : base(1920, 1080, false, false)
 	{
 		targetFps = 60;
 		ResetLevel();
@@ -27,7 +31,14 @@ public class MyGame : Game
 	// }
 	
 	void Update() {
-		if (level != null && Input.AnyKeyDown() && lifeCounter.gameOver)
+        // Instantly game over if highScore is the default value to give the illusion of a start screen.
+        if (highScore < 0)
+        {
+            lifeCounter.ChangeLivesAmount(-3);
+            highScore = 0;
+        }
+
+        if (level != null && Input.AnyKeyDown() && lifeCounter.gameOver)
 		{
 			level.cleanLevel();
 			ResetLevel();
@@ -49,6 +60,7 @@ public class MyGame : Game
 		if (level != null)
 		{
 			level.Destroy();
+			hud.Destroy();
 			level = null;
 		}
 		// if (hud != null)
@@ -83,7 +95,12 @@ public class MyGame : Game
 		
 		level = new Level("level_lab.tmx");
 		AddChild(level);
-		// Doing this so the game has access to the game over variable and can reset the game.
-		lifeCounter = FindObjectOfType<LifeCounter>();
-	}
+		level.SetHighScore(highScore);
+        hud = new HUD("level_lab.tmx");
+        AddChild(hud);
+		player = FindObjectOfType<Player>();
+        // Doing this so the game has access to the game over variable and can reset the game.
+        lifeCounter = FindObjectOfType<LifeCounter>();
+        hud.SetObjects(player, lifeCounter, highScore);
+    }
 }

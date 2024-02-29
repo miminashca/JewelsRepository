@@ -13,11 +13,12 @@ public class Level : GameObject
     private Box box;
     private RotationReader rotationReader;
     
-    //private ArduinoControls arduinoControls;
+    private ArduinoControls arduinoControls;
     private LifeCounter lifeCounter;
     private PressButtonText pressButtonText;
     int currentTextTime;
     int textBlinkTime = 1250;
+    int highScore;
 	
     private int currentGemTime;
     private ArrayList gems;
@@ -38,7 +39,9 @@ public class Level : GameObject
         loader.rootObject = this;
         loader.LoadTileLayers(0);
         loader.autoInstance = true;
-        loader.LoadObjectGroups();
+        loader.LoadObjectGroups(0);
+        loader.LoadObjectGroups(1);
+        loader.LoadObjectGroups(2);
         player = FindObjectOfType<Player>();
         pressButtonText = FindObjectOfType<PressButtonText>();
 
@@ -48,8 +51,8 @@ public class Level : GameObject
         rotationReader = new RotationReader(controller);
         AddChild(rotationReader);
 
-        // arduinoControls = new ArduinoControls();
-        // AddChild(arduinoControls);
+        arduinoControls = new ArduinoControls();
+        AddChild(arduinoControls);
 
         lifeCounter = new LifeCounter();
         AddChild(lifeCounter);
@@ -59,10 +62,11 @@ public class Level : GameObject
 
     public void Update()
     {
+
         // Stopping action after the player has lost
         if (!lifeCounter.gameOver)
         {
-            //arduinoControls.UseFile(controller);
+            arduinoControls.UseFile(controller);
 
             if (Time.time - currentGemTime >= gemSpawnTime * 1000 && levelCleaned == false)
             {
@@ -86,11 +90,14 @@ public class Level : GameObject
             // Cleaning the level once after the player has failed. 
             cleanLevel();
         }
-        else if (Time.time - currentTextTime >= textBlinkTime)
+        else
         {
-            // Blink text at a specific interval before starting a new run
-            pressButtonText.visible = !pressButtonText.visible;
-            currentTextTime = Time.time;
+            if (Time.time - currentTextTime >= textBlinkTime)
+            {
+                // Blink text at a specific interval before starting a new run
+                pressButtonText.visible = !pressButtonText.visible;
+                currentTextTime = Time.time;
+            }
         }
     }
 
@@ -100,8 +107,12 @@ public class Level : GameObject
         {
               gems.Remove(gem);
               gem.Destroy();
-              levelCleaned = true;
         }
+        levelCleaned = true;
     }
 	
+    public void SetHighScore(int pHighScore)
+    {
+        highScore = pHighScore;
+    }
 }

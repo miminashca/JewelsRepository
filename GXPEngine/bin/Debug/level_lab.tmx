@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="120" tileheight="120" infinite="0" nextlayerid="9" nextobjectid="10">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="120" tileheight="120" infinite="0" nextlayerid="10" nextobjectid="16">
  <tileset firstgid="1" name="Terrain (16x16)" tilewidth="16" tileheight="16" tilecount="242" columns="22">
   <image source="sprites/terrain.png" width="352" height="176"/>
  </tileset>
@@ -14,6 +14,9 @@
  </tileset>
  <tileset firstgid="300" name="Start Text" tilewidth="2560" tileheight="540" tilecount="1" columns="1">
   <image source="sprites/start_text.png" trans="ff00ff" width="2560" height="540"/>
+ </tileset>
+ <tileset firstgid="301" name="Start Text White" tilewidth="1920" tileheight="300" tilecount="1" columns="1">
+  <image source="sprites/start_text_white.png" trans="ff00ff" width="1920" height="300"/>
  </tileset>
  <layer id="6" name="Tile Layer 2" width="16" height="9">
   <data encoding="csv">
@@ -53,8 +56,25 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="7" name="HUD Layer">
-  <object id="9" name="Start Text" type="PressButtonText" x="239.212" y="591.985" width="1523.27" height="571.227" visible="0"/>
+ <objectgroup id="7" name="Text Layer">
+  <object id="9" name="Start Text" type="PressButtonText" x="239.21" y="741.99" width="1450" height="225" visible="0"/>
+  <object id="10" x="8.48439" y="9.682" width="201.213" height="53.3638">
+   <text fontfamily="Upheaval TT (BRK)" pixelsize="60" wrap="1" color="#ffffff">Score:</text>
+  </object>
+ </objectgroup>
+ <objectgroup id="9" name="Score Layer">
+  <object id="12" name="Score" x="216.06" y="6.65143" width="186.061" height="53.3638" visible="0">
+   <text fontfamily="Upheaval TT (BRK)" pixelsize="60" wrap="1" color="#ffffff">0</text>
+  </object>
+  <object id="13" name="Low Score" x="306.969" y="276.349" width="716.364" height="107.909">
+   <text fontfamily="Upheaval TT (BRK)" pixelsize="120" wrap="1" color="#ffffff">High Score:</text>
+  </object>
+  <object id="14" name="High Score" x="167.575" y="267.258" width="983.031" height="110.94">
+   <text fontfamily="Upheaval TT (BRK)" pixelsize="120" wrap="1" color="#ffffff">New High Score:</text>
+  </object>
+  <object id="15" name="Current Score" x="205.454" y="524.834" width="931.516" height="113.97">
+   <text fontfamily="Upheaval TT (BRK)" pixelsize="120" wrap="1" color="#ffffff">Current Score:</text>
+  </object>
  </objectgroup>
  <layer id="1" name="Слой тайлов 1" width="16" height="9">
   <data encoding="csv">

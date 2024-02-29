@@ -8,7 +8,7 @@ using TiledMapParser;
 
 public class PressButtonText : Sprite
 {
-    public PressButtonText(TiledObject obj = null) : base("sprites/start_text.png", false, false)
+    public PressButtonText(TiledObject obj = null) : base("sprites/start_text_white.png", false, false)
     {
         obj.Initialize();
         SetOrigin(width / 2, height / 2);
