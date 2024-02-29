@@ -16,8 +16,8 @@ public class LifeCounter : GameObject
     public LifeCounter()
     {
         lives = new Life[0];
-        x = game.width + 35;
-        y = 35;
+        x = game.width + 100;
+        y = 0;
     }
 
     void Update()
@@ -42,8 +42,10 @@ public class LifeCounter : GameObject
         {
             Life life = new Life();
             life.x = x - (life.width) * i;
-            life.y = y;
+            life.y = y + life.height * 1.2f;
             parent.AddChild(life);
+            Console.WriteLine("Life added at: {0}, {1}", life.x, life.y);
+            Console.WriteLine("Life dimensions: {0}, {1}", life.width, life.height);
         }
         previouslifeAmount = lifeAmount;
     }
@@ -53,14 +55,17 @@ public class LifeCounter : GameObject
         // Adding the empty life outlines behind the main one's.
         for (int i = 1; i <= lifeAmount; i++)
         {
-            Sprite lifeEmpty = new Sprite("sprites/battery_empty.png");
-            lifeEmpty.SetOrigin(lifeEmpty.width / 2, lifeEmpty.height / 2);
-            lifeEmpty.x = x - (lifeEmpty.width) * i;
-            lifeEmpty.y = y;
-            lifeEmpty.scaleX = 1.3f;
-            lifeEmpty.scaleY = 1.1f;
-            parent.AddChild(lifeEmpty);
-            Console.WriteLine("Spawning outline at: {0}, {1}", lifeEmpty.x, lifeEmpty.y);
+            Life life = new Life();
+            life.lifeEmpty.x = x - (life.width) * i;
+            life.lifeEmpty.y = y + (life.height * 1.2f);
+            life.lifeEmpty.scaleX = 2.3f;
+            life.lifeEmpty.scaleY = 2.1f;
+            life.lifeEmpty.SetOrigin(life.lifeEmpty.width / 2, life.lifeEmpty.height / 2);
+            life.lifeEmpty.alpha = 1;
+            life.alpha = 0;
+            parent.AddChild(life.lifeEmpty);
+            Console.WriteLine("Life Outline added at: {0}, {1}", life.lifeEmpty.x, life.lifeEmpty.y);
+            Console.WriteLine("Life Outline dimensions: {0}, {1}", life.lifeEmpty.width, life.lifeEmpty.height);
         }
     }
 

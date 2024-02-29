@@ -28,7 +28,7 @@ public class Level : GameObject
     private Controller controller;
     public Level(string mapName)
     {
-        gemDestructionPoint = 600;
+        gemDestructionPoint = game.height;
         gemSpawnTime = 3;
 		
         gems = new ArrayList();

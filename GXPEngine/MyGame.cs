@@ -6,7 +6,7 @@ public class MyGame : Game
 
 	private Level level;
 	LifeCounter lifeCounter;
-	public MyGame() : base(704, 704, false, false)
+	public MyGame() : base(1920, 1080, false, false)
 	{
 		targetFps = 60;
 		ResetLevel();

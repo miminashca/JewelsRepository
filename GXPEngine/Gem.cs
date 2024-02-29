@@ -38,9 +38,9 @@ public class Gem : AnimationSprite
 		velocity = new Vector2();
 		
 		gemSpawnPointY = height / 2;
-		gemSpawnPoint = 300;
+		gemSpawnPoint = game.width / 2;
 		gemSpawnDistance = 50;
-		gemSpeed = 3;
+		gemSpeed = 9;
 			
 		randomizer = new Random();
 		gemType = randomizer.Next(0, 5);
