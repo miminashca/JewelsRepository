@@ -12,8 +12,8 @@ using System.Drawing;
     private float gravity;
     private float speed;
     private int score;
-    
-    public Player(string filename, int colls, int rows, TiledObject obg = null) : base("sprites/barry.png", 7, 1)
+    private int boundary;
+    public Player(string filename, int colls, int rows, TiledObject obg = null) : base("sprites/robotGuy_spritesheet.png", 12, 1 , -1, false, false)
     {
         gravity = .3f;
         speed = 12;
@@ -22,28 +22,37 @@ using System.Drawing;
         SetOrigin(width/2, height/2);
 
         score = 0;
+
+        boundary = 700;
     }
 
 
 
     public void Update()
     {
+        Animate(0.06f);
         if (Input.GetKey(Key.LEFT))
         {
-            MoveUntilCollision(-speed, 0);
-            SetCycle(0, 3);
+            if (x > boundary)
+            {
+                x -= speed;
+            }
+            SetCycle(6, 6);
             Mirror(true, false);
 
         }
         else if (Input.GetKey(Key.RIGHT))
         {
-            MoveUntilCollision(speed, 0);
-            SetCycle(0, 3);
+            if (x < game.width - boundary)
+            {
+                x += speed;
+            }
+            SetCycle(6, 6);
             Mirror(false, false);
         }
         else
         {
-            SetCycle(4, 3);
+            SetCycle(0, 6);
         }
 
         //velocity.y += gravity;

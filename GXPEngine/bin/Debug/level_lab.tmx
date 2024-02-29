@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="120" tileheight="120" infinite="0" nextlayerid="9" nextobjectid="10">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="120" tileheight="120" infinite="0" nextlayerid="9" nextobjectid="15">
  <tileset firstgid="1" name="Terrain (16x16)" tilewidth="16" tileheight="16" tilecount="242" columns="22">
   <image source="sprites/terrain.png" width="352" height="176"/>
  </tileset>
- <tileset firstgid="243" name="barry" tilewidth="48" tileheight="48" tilecount="7" columns="7">
+ <tileset firstgid="243" name="barry" tilewidth="48" tileheight="48" tilecount="0" columns="7">
   <image source="barry.png" width="336" height="48"/>
  </tileset>
- <tileset firstgid="250" name="Mossy_Tileset_64" tilewidth="64" tileheight="64" tilecount="49" columns="7">
+ <tileset firstgid="244" name="Mossy_Tileset_64" tilewidth="64" tileheight="64" tilecount="49" columns="7">
   <image source="sprites/Mossy_Tileset_64.png" width="448" height="448"/>
  </tileset>
- <tileset firstgid="299" name="Life placeholder" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="293" name="Life placeholder" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="sprites/circle.png" trans="ff00ff" width="64" height="64"/>
  </tileset>
- <tileset firstgid="300" name="Start Text" tilewidth="2560" tileheight="540" tilecount="1" columns="1">
+ <tileset firstgid="294" name="Start Text" tilewidth="2560" tileheight="540" tilecount="1" columns="1">
   <image source="sprites/start_text.png" trans="ff00ff" width="2560" height="540"/>
+ </tileset>
+ <tileset firstgid="295" name="robot" tilewidth="128" tileheight="128" tilecount="5" columns="5">
+  <image source="sprites/Robot Guy Idle Animation Sheet.png" width="640" height="128"/>
+ </tileset>
+ <tileset firstgid="300" name="MineCartGem1" tilewidth="128" tileheight="128" tilecount="1" columns="1">
+  <image source="sprites/MineCartGem1.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="301" name="MineCartGem2" tilewidth="128" tileheight="128" tilecount="1" columns="1">
+  <image source="sprites/MineCartGem2.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="302" name="MineCartGem3" tilewidth="128" tileheight="128" tilecount="1" columns="1">
+  <image source="sprites/MineCartGem3.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="303" name="MineCartGem4" tilewidth="128" tileheight="128" tilecount="1" columns="1">
+  <image source="sprites/MineCartGem4.png" width="128" height="128"/>
  </tileset>
  <layer id="6" name="Tile Layer 2" width="16" height="9">
   <data encoding="csv">
@@ -29,25 +44,25 @@
 </data>
  </layer>
  <objectgroup id="5" name="player">
-  <object id="3" type="Player" gid="243" x="925.828" y="1058.43" width="76.9477" height="71.1582"/>
+  <object id="10" type="Player" gid="295" x="818.485" y="1063.55" width="276.582" height="276.582"/>
  </objectgroup>
  <objectgroup id="7" name="boxes">
-  <object id="4" name="0" type="Box" gid="293" x="204.953" y="925.631" width="64" height="64">
+  <object id="11" name="0" type="Box" gid="300" x="30.552" y="1065.8" width="263.074" height="263.074">
    <properties>
     <property name="type" type="int" value="0"/>
    </properties>
   </object>
-  <object id="5" name="1" type="Box" gid="293" x="506.71" y="1063.6" width="64" height="64">
+  <object id="12" name="1" type="Box" gid="301" x="390.75" y="1065.8" width="263.07" height="263.07">
    <properties>
     <property name="type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="6" name="2" type="Box" gid="293" x="1332.4" y="1054.28" width="64" height="64">
+  <object id="13" name="2" type="Box" gid="302" x="1277.74" y="1065.8" width="263.07" height="263.07">
    <properties>
     <property name="type" type="int" value="2"/>
    </properties>
   </object>
-  <object id="7" name="3" type="Box" gid="293" x="1652.21" y="944.04" width="64" height="64">
+  <object id="14" name="3" type="Box" gid="303" x="1637.94" y="1065.8" width="263.07" height="263.07">
    <properties>
     <property name="type" type="int" value="3"/>
    </properties>
