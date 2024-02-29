@@ -11,6 +11,7 @@ using System.Drawing;
     
     private float gravity;
     private float speed;
+    private int score;
     
     public Player(string filename, int colls, int rows, TiledObject obg = null) : base("sprites/barry.png", 7, 1)
     {
@@ -19,6 +20,8 @@ using System.Drawing;
         
         scale=2;  
         SetOrigin(width/2, height/2);
+
+        score = 0;
     }
 
 
@@ -73,5 +76,11 @@ using System.Drawing;
     //     AddChild(baseShape);
     //     return new BoxCollider(baseShape);
     // }
+
+    public void addScore(int scoreAmount)
+    {
+        score += scoreAmount;
+        Console.WriteLine(score);
+    }
 
 }

@@ -8,9 +8,8 @@ using TiledMapParser;
 
 public class Life : Sprite
 {
-    public Life() : base ("sprites/circle.png")
+    public Life() : base("sprites/battery.png")
     {
-        scale = 0.5f;
         SetOrigin(width / 2, height / 2);
     }
 }

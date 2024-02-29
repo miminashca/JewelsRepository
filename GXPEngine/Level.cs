@@ -10,6 +10,7 @@ public class Level : GameObject
     public bool levelCleaned = false;
     private Player player;
     public Gem gem;
+    private Box box;
     private RotationReader rotationReader;
     
     private ArduinoControls arduinoControls;
@@ -22,7 +23,7 @@ public class Level : GameObject
     private ArrayList gems;
 	
     private int gemDestructionPoint;
-    private int gemSpawnTime;
+    public float gemSpawnTime;
 	
     private Controller controller;
     public Level(string mapName)
@@ -56,6 +57,7 @@ public class Level : GameObject
 
         lifeCounter = new LifeCounter();
         AddChild(lifeCounter);
+        box = FindObjectOfType<Box>();
     }
 
     public void Update()
@@ -64,6 +66,7 @@ public class Level : GameObject
         if (!lifeCounter.gameOver)
         {
             arduinoControls.UseFile(controller);
+            gem = new Gem(rotationReader, player, box, this);
 
             if (Time.time - currentGemTime >= gemSpawnTime * 1000 && levelCleaned == false)
             {
