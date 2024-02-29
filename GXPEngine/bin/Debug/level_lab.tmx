@@ -33,9 +33,6 @@
  <objectgroup id="5" name="player">
   <object id="3" type="Player" gid="243" x="309.343" y="630.062" width="76.9477" height="71.1582"/>
  </objectgroup>
- <objectgroup id="7" name="HUD Layer">
-  <object id="9" name="Start Text" type="PressButtonText" x="34" y="510" width="631" height="107"/>
- </objectgroup>
  <objectgroup id="7" name="boxes">
   <object id="4" name="0" type="Box" gid="293" x="64.2262" y="576.176" width="64" height="64">
    <properties>
@@ -57,6 +54,9 @@
     <property name="type" type="int" value="3"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup id="7" name="HUD Layer">
+  <object id="9" name="Start Text" type="PressButtonText" x="34" y="510" width="631" height="107"/>
  </objectgroup>
  <layer id="1" name="Слой тайлов 1" width="11" height="11">
   <data encoding="csv">

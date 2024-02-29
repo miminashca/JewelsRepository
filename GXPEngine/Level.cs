@@ -38,12 +38,8 @@ public class Level : GameObject
         loader.rootObject = this;
         loader.LoadTileLayers(0);
         loader.autoInstance = true;
-        // I moved the object layer second so it displays below the HUD layer
-        loader.LoadObjectGroups(0);
+        loader.LoadObjectGroups();
         player = FindObjectOfType<Player>();
-        // Loading the HUD Layer seperately so it doesn't have any collisions, although addColliders doesn't seem to work for some reason, so I had to do it manually
-        loader.addColliders = false;
-        loader.LoadObjectGroups(1);
         pressButtonText = FindObjectOfType<PressButtonText>();
 
         controller = new Controller(player);
@@ -57,6 +53,7 @@ public class Level : GameObject
 
         lifeCounter = new LifeCounter();
         AddChild(lifeCounter);
+
         box = FindObjectOfType<Box>();
     }
 
@@ -66,12 +63,10 @@ public class Level : GameObject
         if (!lifeCounter.gameOver)
         {
             arduinoControls.UseFile(controller);
-            gem = new Gem(rotationReader, player, box, this);
 
             if (Time.time - currentGemTime >= gemSpawnTime * 1000 && levelCleaned == false)
             {
-                gem = new Gem(rotationReader);
-                //AddChild(gem);
+                gem = new Gem(rotationReader, player, box, this);
                 gems.Add(gem);
                 currentGemTime = Time.time;
             }
