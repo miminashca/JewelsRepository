@@ -7,6 +7,11 @@ public class MyGame : Game
 	private Level level;
 	HUD hud;
 	LifeCounter lifeCounter;
+
+	private Sound themeSound;
+	private SoundChannel themeMusicChannel;
+
+	private Sound menuSound;
 	Player player;
 	// High score is stored here so it's not overwritten when the level resets. Default is -1 so the game does not reset again if the player gets no score.
 	int highScore = -1;
@@ -14,6 +19,11 @@ public class MyGame : Game
 	{
 		targetFps = 60;
 		ResetLevel();
+
+		themeSound = new Sound("sounds/theme.mp3", true);
+		themeMusicChannel = themeSound.Play(false, 0U, 0.5f);
+
+		menuSound = new Sound("sounds/menu.wav");
 	}
 	
 	
@@ -40,6 +50,7 @@ public class MyGame : Game
 
         if (level != null && Input.AnyKeyDown() && lifeCounter.gameOver)
 		{
+			menuSound.Play();
 			level.cleanLevel();
 			ResetLevel();
 			Console.WriteLine("reset");

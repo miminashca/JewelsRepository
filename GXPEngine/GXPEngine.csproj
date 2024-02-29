@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -48,7 +48,6 @@
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />
     <Compile Include="GXPEngine\AddOns\TiledLoader.cs" />
     <Compile Include="HUD.cs" />
-    <Compile Include="Life.cs" />
     <Compile Include="LifeCounter.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Core\Canvas.cs" />
@@ -93,6 +92,7 @@
     <Compile Include="Level.cs" />
     <Compile Include="PressButtonText.cs" />
     <Compile Include="RotationReader.cs" />
+    <Compile Include="UIBatteries.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -4,7 +4,6 @@ using GXPEngine.Core;
 using System.Drawing;
 using TiledMapParser;
 using GXPEngine;
-
 public class Level : GameObject
 {
     public bool levelCleaned = false;
@@ -27,6 +26,31 @@ public class Level : GameObject
     public float gemSpawnTime;
 	
     private Controller controller;
+    private UIBatteries batteries;
+
+    private Sprite background1;
+    private Sprite background2;
+    private Sprite background3;
+    private Sprite[] backgrounds;
+
+    private int currentTime;
+    private int backgroundSwitchTimeMs;
+    
+    float fadeTime;
+    private bool fade = false;
+    //boolean fadeSwitched = false;
+    private float maxAlpha = 1;
+    private float minAlpha = 0;
+    private float currentAlphaDown;
+    private float currentAlphaUp;
+
+    private int currentBackground = -1;
+    
+    public Sound DropSound;
+    public SoundChannel musicChannelDrop;
+
+    private Random random;
+    private float randomVol;
     public Level(string mapName)
     {
         gemDestructionPoint = game.height;
@@ -58,6 +82,34 @@ public class Level : GameObject
         AddChild(lifeCounter);
 
         box = FindObjectOfType<Box>();
+
+        batteries = new UIBatteries(lifeCounter);
+        AddChild(batteries);
+
+        backgrounds = new Sprite[3];
+
+        background1 = new Sprite("sprites/background_day.png", false, false);
+        background1.alpha = 1;
+        background2 = new Sprite("sprites/background_dusk.png", false, false);
+        background2.alpha = 0;
+        background3 = new Sprite("sprites/background_night.png", false, false);
+        background3.alpha = 0;
+        
+        backgrounds[0] = background1;
+        backgrounds[1] = background2;
+        backgrounds[2] = background3;
+        
+         for (int i = 0; i < backgrounds.Length; i++)
+         {
+             AddChildAt(backgrounds[i], 0);
+         }
+        
+        currentTime = Time.time;
+        backgroundSwitchTimeMs = 15000;
+
+        DropSound = new Sound("sounds/drop.wav");
+        random = new Random();
+        randomVol = random.Next(2, 6);
     }
 
     public void Update()
@@ -80,6 +132,8 @@ public class Level : GameObject
                 AddChild(gem);
                 if (gem.y >= gemDestructionPoint)
                 {
+                    musicChannelDrop = DropSound.Play(false, 0U, randomVol / 10);
+                    
                     gems.Remove(gem);
                     gem.Destroy();
                     lifeCounter.ChangeLivesAmount(-1);
@@ -99,6 +153,8 @@ public class Level : GameObject
                 currentTextTime = Time.time;
             }
         }
+
+        UpdateBackground();
     }
 
     public void cleanLevel()
@@ -110,6 +166,78 @@ public class Level : GameObject
         }
         levelCleaned = true;
     }
+
+    private void UpdateBackground()
+    {
+        if (Time.time - currentTime >= backgroundSwitchTimeMs)
+        {
+            fadeTime = Time.time;
+            if (currentBackground < 2)
+            {
+                currentBackground++;
+                Console.WriteLine(currentBackground);
+            }
+            else
+            {
+                currentBackground = 0;
+                Console.WriteLine(currentBackground);
+            }
+            fade = true;
+            currentTime = Time.time;
+        }
+
+        if (fade)
+        {
+            float t = ((Time.time-fadeTime)/1000)*0.5f;
+            currentAlphaDown = Interpolation.Lerp(maxAlpha, minAlpha, t);
+            currentAlphaUp = Interpolation.Lerp(minAlpha, maxAlpha, t);
+            
+            if (currentBackground == 0)
+            {
+                backgrounds[0].alpha = currentAlphaDown;
+                backgrounds[1].alpha = currentAlphaUp;
+                if (backgrounds[0].alpha < 0.1 && backgrounds[1].alpha > 0.9)
+                {
+                    backgrounds[0].alpha = 0;
+                    backgrounds[1].alpha = 1;
+                    fade = false;
+                }
+            }
+            
+            if (currentBackground == 1)
+            {
+                backgrounds[1].alpha = currentAlphaDown;
+                backgrounds[2].alpha = currentAlphaUp;
+                if (backgrounds[1].alpha < 0.1 && backgrounds[2].alpha > 0.9)
+                {
+                    backgrounds[1].alpha = 0;
+                    backgrounds[2].alpha = 1;
+                    fade = false;
+                }
+            }
+            
+            if (currentBackground == 2)
+            {
+                backgrounds[2].alpha = currentAlphaDown;
+                backgrounds[0].alpha = currentAlphaUp;
+                if (backgrounds[2].alpha < 0.1 && backgrounds[0].alpha > 0.9)
+                {
+                    backgrounds[2].alpha = 0;
+                    backgrounds[0].alpha = 1;
+                    fade = false;
+                }
+            }
+        }
+    }
+    
+    public static class Interpolation
+    {
+        public static float Lerp(float a, float b, float t)
+        {
+            return a + (b - a) * t;
+        }
+    }
+
 	
     public void SetHighScore(int pHighScore)
     {
