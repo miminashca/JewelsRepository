@@ -45,6 +45,11 @@ public class Level : GameObject
 
     private int currentBackground = -1;
     
+    public Sound DropSound;
+    public SoundChannel musicChannelDrop;
+
+    private Random random;
+    private float randomVol;
     public Level(string mapName)
     {
         gemDestructionPoint = game.height;
@@ -99,6 +104,9 @@ public class Level : GameObject
         currentTime = Time.time;
         backgroundSwitchTimeMs = 15000;
 
+        DropSound = new Sound("sounds/drop.wav");
+        random = new Random();
+        randomVol = random.Next(2, 6);
     }
 
     public void Update()
@@ -120,6 +128,8 @@ public class Level : GameObject
                 AddChild(gem);
                 if (gem.y >= gemDestructionPoint)
                 {
+                    musicChannelDrop = DropSound.Play(false, 0U, randomVol / 10);
+                    
                     gems.Remove(gem);
                     gem.Destroy();
                     lifeCounter.ChangeLivesAmount(-1);

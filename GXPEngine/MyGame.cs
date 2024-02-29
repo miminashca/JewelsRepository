@@ -6,10 +6,20 @@ public class MyGame : Game
 
 	private Level level;
 	LifeCounter lifeCounter;
+
+	private Sound themeSound;
+	private SoundChannel themeMusicChannel;
+
+	private Sound menuSound;
 	public MyGame() : base(1920, 1080, false, false)
 	{
 		targetFps = 60;
 		ResetLevel();
+
+		themeSound = new Sound("sounds/theme.mp3", true);
+		themeMusicChannel = themeSound.Play(false, 0U, 0.5f);
+
+		menuSound = new Sound("sounds/menu.wav");
 	}
 	
 	
@@ -29,6 +39,7 @@ public class MyGame : Game
 	void Update() {
 		if (level != null && Input.AnyKeyDown() && lifeCounter.gameOver)
 		{
+			menuSound.Play();
 			level.cleanLevel();
 			ResetLevel();
 			Console.WriteLine("reset");

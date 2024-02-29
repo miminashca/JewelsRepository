@@ -30,6 +30,14 @@ public class Gem : AnimationSprite
 	private Player player;
 	private Box box;
 	private Level level;
+	
+	public Sound BoxSound;
+	public Sound PlatformSound;
+	public SoundChannel musicChannelBox;
+	public SoundChannel musicChannelPlatform;
+	
+	private Random randomGemVol;
+	private float gemVol;
 	public Gem(RotationReader pRotationReader, Player pPlayer, Box pBox, Level pLevel) : base("sprites/square.png", 1, 1)
 	{
 		rotationReader = pRotationReader;
@@ -76,6 +84,12 @@ public class Gem : AnimationSprite
 		player = pPlayer;
 		box = pBox;
 		level = pLevel;
+		
+		BoxSound = new Sound("sounds/box.wav");
+		PlatformSound = new Sound("sounds/platform.wav");
+		
+		randomGemVol = new Random();
+		gemVol = randomGemVol.Next(2, 6);
 	}
 
 	void Update()
@@ -132,6 +146,7 @@ public class Gem : AnimationSprite
 		{
 			if (collObj is Controller pController)
 			{
+				musicChannelPlatform = PlatformSound.Play(false, 0U, gemVol / 10);
 				angle = rotationReader.controllerRotation;
 				moves = true;
 				velocity.y = -angleSpeedY;
@@ -144,6 +159,7 @@ public class Gem : AnimationSprite
 
 			if (collObj is Box box)
 			{
+				musicChannelBox = BoxSound.Play(false, 0U, gemVol / 10);
 				int boxType;
 				boxType = box.getBoxType();
 				if (boxType == gemType && !collided)
@@ -151,7 +167,6 @@ public class Gem : AnimationSprite
 					player.addScore(100);
 					collided = true;
 				}
-				
 			}
 		}
 	}
