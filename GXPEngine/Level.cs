@@ -143,6 +143,12 @@ public class Level : GameObject
                     gem.Destroy();
                     lifeCounter.ChangeLivesAmount(-1);
                 }
+                //here
+                if (gem.collidedBox)
+                {
+                    gems.Remove(gem);
+                    gem.Destroy();
+                }
             }
         }
         else if (!levelCleaned) { 

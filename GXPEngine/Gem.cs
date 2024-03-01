@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using GXPEngine;
 using GXPEngine.Core;
@@ -7,6 +7,7 @@ using TiledMapParser;
 public class Gem : Canvas
 {
 	private bool collided = false;
+	public bool collidedBox = false;
 	private int gemPosType;
 	private Random randomizer;
 
@@ -179,7 +180,9 @@ public class Gem : Canvas
 				{
 					player.addScore(100);
 					collided = true;
-                }
+					//here
+					collidedBox = true;
+				}
 			}
 		}
 	}
