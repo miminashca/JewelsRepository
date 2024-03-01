@@ -98,7 +98,8 @@ public class Gem : Canvas
 
 	void Update()
 	{
-		Move(angleSpeedX,0);
+		if (rotation > 0){ Move(angleSpeedX, 0); }
+		else { Move(-angleSpeedX, 0); }
         gemSprite.Animate(0.3f);
 		if (!moves)
 		{
@@ -160,7 +161,7 @@ public class Gem : Canvas
 				//Console.WriteLine("Launching at angle: {0}", angle);
 				moves = true;
 				velocity.y = -angleSpeedY;
-				angleSpeedX += 6.5f;
+				angleSpeedX += 10.5f;
 
 				// if (gemType == 4 && !collided)
 				// {
@@ -178,7 +179,7 @@ public class Gem : Canvas
 				{
 					player.addScore(100);
 					collided = true;
-				}
+                }
 			}
 		}
 	}
