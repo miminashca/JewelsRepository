@@ -10,7 +10,7 @@ using System.Drawing;
     bool isOnGround = false;
     
     private float gravity;
-    private float speed;
+    public float speed { get; private set; }
     public int score { get; private set; }
     
     public Player(string filename, int colls, int rows, TiledObject obg = null) : base("sprites/barry.png", 7, 1)
@@ -28,23 +28,6 @@ using System.Drawing;
 
     public void Update()
     {
-        if (Input.GetKey(Key.LEFT))
-        {
-            MoveUntilCollision(-speed, 0);
-            SetCycle(0, 3);
-            Mirror(true, false);
-
-        }
-        else if (Input.GetKey(Key.RIGHT))
-        {
-            MoveUntilCollision(speed, 0);
-            SetCycle(0, 3);
-            Mirror(false, false);
-        }
-        else
-        {
-            SetCycle(4, 3);
-        }
 
         //velocity.y += gravity;
 

@@ -118,7 +118,7 @@ public class Level : GameObject
         // Stopping action after the player has lost
         if (!lifeCounter.gameOver)
         {
-            arduinoControls.UseFile(controller);
+            arduinoControls.UseFile(controller, player);
 
             if (Time.time - currentGemTime >= gemSpawnTime * 1000 && levelCleaned == false)
             {

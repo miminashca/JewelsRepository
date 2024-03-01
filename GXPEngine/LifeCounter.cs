@@ -11,7 +11,6 @@ public class LifeCounter : GameObject
     // Public variable that is read-only, so it can't be modified by other classes.
     public bool gameOver { get; private set; } = false;
     public int lifeAmount = 3;
-    int previouslifeAmount = 0;
     public LifeCounter()
     {
     }

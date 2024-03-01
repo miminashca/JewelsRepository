@@ -14,11 +14,13 @@ Madgwick filter;
 float yaw = 0.0;
 float pitch = 0.0;
 float roll = 0.0;
-int pinNumber = 8;
+int leftButton = 13;
+int rightButton = 9;
 
 void setup() {
   Serial.begin(57600);
-  pinMode(pinNumber, INPUT);
+  pinMode(leftButton, INPUT_PULLUP);
+  pinMode(rightButton, INPUT_PULLUP);
   // attempt to start the IMU:
   if (!IMU.begin()) {
     Serial.println("Failed to initialize IMU");
@@ -34,7 +36,8 @@ void loop() {
   // values for acceleration and rotation:
   float xAcc, yAcc, zAcc;
   float xGyro, yGyro, zGyro;
-  // int buttonState = digitalRead(pinNumber);
+  int leftButtonState = digitalRead(leftButton);
+  int rightButtonState = digitalRead(rightButton);
 
   // check if the IMU is ready to read:
   if (IMU.accelerationAvailable() && IMU.gyroscopeAvailable()) {
@@ -55,8 +58,10 @@ void loop() {
     Serial.print(",");
     Serial.print(pitch);
     Serial.print(",");
-    Serial.println(roll);
-    // Serial.print(",");
-    // Serial.println(buttonState);
+    Serial.print(roll);
+    Serial.print(",");
+    Serial.print(leftButtonState);
+    Serial.print(",");
+    Serial.println(rightButtonState);
   }
 }
