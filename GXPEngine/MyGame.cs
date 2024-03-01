@@ -49,8 +49,7 @@ public class MyGame : Game
             highScore = 0;
         }
 
-		Console.WriteLine(currentFps);
-        if (level != null && lifeCounter.gameOver && arduinoControls.ButtonPressed())
+        if (level != null && lifeCounter.gameOver && (Input.AnyKeyDown() || arduinoControls.ButtonPressedDown()))
 		{
 			menuSound.Play();
 			level.cleanLevel();

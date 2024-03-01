@@ -94,8 +94,10 @@ class ArduinoControls : GameObject
         }
     }
 
-    public bool ButtonPressed()
+    public bool ButtonPressedDown()
     {
+        bool leftButtonWasPressed = leftButtonPressed;
+        bool rightButtonWasPressed = rightButtonPressed;
         if (SerialPort.GetPortNames().Length != 0)
         {
             string[] incomingString = ReadFile();
@@ -112,7 +114,7 @@ class ArduinoControls : GameObject
                     if (Convert.ToSingle(incomingString[4]) < 0.5f) { rightButtonPressed = true; }
                     else { rightButtonPressed = false; }
                 }
-                if (leftButtonPressed || rightButtonPressed) { return true; }
+                if ((leftButtonPressed && !leftButtonWasPressed) || (rightButtonPressed && !rightButtonWasPressed)) { return true; }
             }
             return false;
         }

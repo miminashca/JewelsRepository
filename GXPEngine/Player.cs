@@ -16,7 +16,7 @@ using System.Drawing;
     public Player(string filename, int colls, int rows, TiledObject obg = null) : base("sprites/robotGuy_spritesheet.png", 12, 1 , -1, false, false)
     {
         gravity = .3f;
-        speed = 12;
+        speed = 15;
         
         scale=2;  
         SetOrigin(width/2, height/2);
