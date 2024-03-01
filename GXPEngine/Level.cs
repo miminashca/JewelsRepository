@@ -44,13 +44,15 @@ public class Level : GameObject
     private float currentAlphaDown;
     private float currentAlphaUp;
 
-    private int currentBackground = -1;
+    private int currentBackground = 0;
     
     public Sound DropSound;
     public SoundChannel musicChannelDrop;
 
     private Random random;
     private float randomVol;
+
+    private Creature creature;
     public Level(string mapName)
     {
         gemDestructionPoint = game.height;
@@ -110,6 +112,9 @@ public class Level : GameObject
         DropSound = new Sound("sounds/drop.wav");
         random = new Random();
         randomVol = random.Next(2, 6);
+
+        creature = new Creature();
+        AddChild(creature);
     }
 
     public void Update()
@@ -182,6 +187,7 @@ public class Level : GameObject
                 currentBackground = 0;
                 Console.WriteLine(currentBackground);
             }
+            creature.changeCreature(currentBackground);
             fade = true;
             currentTime = Time.time;
         }
@@ -192,7 +198,7 @@ public class Level : GameObject
             currentAlphaDown = Interpolation.Lerp(maxAlpha, minAlpha, t);
             currentAlphaUp = Interpolation.Lerp(minAlpha, maxAlpha, t);
             
-            if (currentBackground == 0)
+            if (currentBackground == 1)
             {
                 backgrounds[0].alpha = currentAlphaDown;
                 backgrounds[1].alpha = currentAlphaUp;
@@ -204,7 +210,7 @@ public class Level : GameObject
                 }
             }
             
-            if (currentBackground == 1)
+            if (currentBackground == 2)
             {
                 backgrounds[1].alpha = currentAlphaDown;
                 backgrounds[2].alpha = currentAlphaUp;
@@ -216,7 +222,7 @@ public class Level : GameObject
                 }
             }
             
-            if (currentBackground == 2)
+            if (currentBackground == 0)
             {
                 backgrounds[2].alpha = currentAlphaDown;
                 backgrounds[0].alpha = currentAlphaUp;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using GXPEngine;
 using GXPEngine.Core;
 using TiledMapParser;
@@ -11,9 +11,9 @@ using System.Drawing;
     
     private float gravity;
     public float speed { get; private set; }
-    public int score { get; private set; }
-    
-    public Player(string filename, int colls, int rows, TiledObject obg = null) : base("sprites/barry.png", 7, 1)
+    private int score;
+    private int boundary;
+    public Player(string filename, int colls, int rows, TiledObject obg = null) : base("sprites/robotGuy_spritesheet.png", 12, 1 , -1, false, false)
     {
         gravity = .3f;
         speed = 12;
@@ -22,12 +22,38 @@ using System.Drawing;
         SetOrigin(width/2, height/2);
 
         score = 0;
+
+        boundary = 700;
     }
 
 
 
     public void Update()
     {
+        Animate(0.06f);
+        if (Input.GetKey(Key.LEFT))
+        {
+            if (x > boundary)
+            {
+                x -= speed;
+            }
+            SetCycle(6, 6);
+            Mirror(true, false);
+
+        }
+        else if (Input.GetKey(Key.RIGHT))
+        {
+            if (x < game.width - boundary)
+            {
+                x += speed;
+            }
+            SetCycle(6, 6);
+            Mirror(false, false);
+        }
+        else
+        {
+            SetCycle(0, 6);
+        }
 
         //velocity.y += gravity;
 

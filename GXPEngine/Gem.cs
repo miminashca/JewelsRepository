@@ -4,7 +4,7 @@ using GXPEngine;
 using GXPEngine.Core;
 using TiledMapParser;
 
-public class Gem : AnimationSprite
+public class Gem : Canvas
 {
 	private bool collided = false;
 	private int gemPosType;
@@ -38,44 +38,44 @@ public class Gem : AnimationSprite
 	
 	private Random randomGemVol;
 	private float gemVol;
-	public Gem(RotationReader pRotationReader, Player pPlayer, Box pBox, Level pLevel) : base("sprites/square.png", 1, 1)
+
+	private AnimationSprite gemSprite;
+	public Gem(RotationReader pRotationReader, Player pPlayer, Box pBox, Level pLevel) : base(100,100)
 	{
 		rotationReader = pRotationReader;
-		scale = 0.5f;
+		//scale = 0.5f;
 		
 		velocity = new Vector2();
 		
 		gemSpawnPointY = height / 2;
 		gemSpawnPoint = game.width / 2;
-		gemSpawnDistance = 50;
+		gemSpawnDistance = 250;
 		gemSpeed = 9;
 			
 		randomizer = new Random();
-		gemType = randomizer.Next(0, 5);
+		gemType = randomizer.Next(0, 4);
 		gemPosType = randomizer.Next(1,4);
 		SetOrigin(width/2, height/2);
 
 		y = gemSpawnPointY;
 		switch (gemPosType)
 		{
-			case 1: x = gemSpawnPoint;
+			case 1: x = gemSpawnPoint -30;
 				break;
-			case 2: x = gemSpawnPoint + gemSpawnDistance;
+			case 2: x = gemSpawnPoint + gemSpawnDistance-30;
 				break;
-			case 3: x = gemSpawnPoint + gemSpawnDistance*2;
+			case 3: x = gemSpawnPoint - gemSpawnDistance-30;
 				break;
 		}
 		switch (gemType)
 		{
-			case 0: color = 0xFF00FF;
+			case 0: gemSprite = new AnimationSprite("sprites/gem1.png", 8, 1);
 				break;
-			case 1: color = 0xFF0000;
+			case 1: gemSprite = new AnimationSprite("sprites/gem2.png", 8, 1);
 				break;
-			case 2: color = 0x00FF00;
+			case 2: gemSprite = new AnimationSprite("sprites/gem3.png", 8, 1);
 				break;
-			case 3: color = 0x0000FF;
-				break;
-			case 4: color = 0xFFFFFF;
+			case 3: gemSprite = new AnimationSprite("sprites/gem4.png", 8, 1);
 				break;
 		}
 		
@@ -90,10 +90,15 @@ public class Gem : AnimationSprite
 		
 		randomGemVol = new Random();
 		gemVol = randomGemVol.Next(2, 6);
+
+		gemSprite.scale = 1.5f;
+		AddChild(gemSprite);
+		gemSprite.SetCycle(0, 8);
 	}
 
 	void Update()
 	{
+		gemSprite.Animate(0.3f);
 		checkCollision();
 		if (!moves)
 		{
@@ -150,11 +155,11 @@ public class Gem : AnimationSprite
 				angle = rotationReader.controllerRotation;
 				moves = true;
 				velocity.y = -angleSpeedY;
-				if (gemType == 4 && !collided)
-				{
-					player.addScore(-100);
-					collided = true;
-				}
+				// if (gemType == 4 && !collided)
+				// {
+				// 	player.addScore(-100);
+				// 	collided = true;
+				// }
 			}
 
 			if (collObj is Box box)
@@ -176,13 +181,5 @@ public class Gem : AnimationSprite
 		return gemType;
 	}
 	
-	// protected override AnimationSprite createAnimationSprite()
-	// {
-	//     EasyDraw baseShape = new EasyDraw(30,60);
-	//     baseShape.SetXY(0,-40);
-	//     baseShape.Clear(ColorTranslator.FromHtml("#55FF0000"));
-	//     AddChild(baseShape);
-	//     return new AnimationSprite("baseShape", 1,1);
-	// }
 }
 
