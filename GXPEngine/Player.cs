@@ -16,7 +16,7 @@ using System.Drawing;
     public Player(string filename, int colls, int rows, TiledObject obg = null) : base("sprites/robotGuy_spritesheet.png", 12, 1 , -1, false, false)
     {
         gravity = .3f;
-        speed = 15;
+        speed = 20;
         
         scale=2;  
         SetOrigin(width/2, height/2);
@@ -44,7 +44,6 @@ using System.Drawing;
     public void addScore(int scoreAmount)
     {
         score += scoreAmount;
-        Console.WriteLine(score);
     }
 
 }

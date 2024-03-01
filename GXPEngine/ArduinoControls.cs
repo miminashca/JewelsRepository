@@ -64,6 +64,7 @@ class ArduinoControls : GameObject
                     if (startYaw - yaw > 45) { platform.rotation = roll; }
                     else { platform.rotation = roll * -1; }
                     previousYaw = yaw;
+                    //Console.WriteLine(platform.rotation);
                 }
                 player.Animate(0.06f);
                 if (leftButtonPressed)

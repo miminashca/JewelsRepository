@@ -20,7 +20,7 @@ public class Gem : Canvas
 	private float gravity = 0.6f;
 	private float angle;
 	private float angleSpeedY = 18;
-	private float angleSpeedX = 4.5f;
+	private float angleSpeedX = 0;
 	private bool moves = false;
 	private int currentTime;
 	private int gemType;
@@ -98,13 +98,14 @@ public class Gem : Canvas
 
 	void Update()
 	{
-		gemSprite.Animate(0.3f);
-		checkCollision();
+		Move(angleSpeedX,0);
+        gemSprite.Animate(0.3f);
 		if (!moves)
 		{
-			// moves = true;
-			// currentTime = Time.time;
-			y += gemSpeed;
+            checkCollision();
+            // moves = true;
+            // currentTime = Time.time;
+            y += gemSpeed;
 		}
 		else
 		{
@@ -133,14 +134,15 @@ public class Gem : Canvas
 		velocity.y += gravity;
 		if (MoveUntilCollision(0, velocity.y) != null)
 		{
-			velocity.y = 0;
+			//velocity.y = 0;
 			moves = false;
 		}
-		
-		x += angleSpeedX * (float)Math.Sin(angle);
-		if (y == 600)
+
+		//x += angleSpeedX * (float)Math.Sin(angle);
+        //Console.WriteLine("Launching at angle: {0}", (float)Math.Sin(angle));
+        if (y == 600)
 		{
-			moves = false;
+            moves = false;
 		}
 	}
 
@@ -149,12 +151,17 @@ public class Gem : Canvas
 		GameObject[] collissions = GetCollisions();
 		foreach (GameObject collObj in collissions)
 		{
-			if (collObj is Controller pController)
+			if (collObj is Controller && !moves)
 			{
-				musicChannelPlatform = PlatformSound.Play(false, 0U, gemVol / 10);
-				angle = rotationReader.controllerRotation;
+                angleSpeedX = 0;
+                //Console.WriteLine("Colliding with platform.");
+                musicChannelPlatform = PlatformSound.Play(false, 0U, gemVol / 10);
+				rotation = rotationReader.controllerRotation;
+				//Console.WriteLine("Launching at angle: {0}", angle);
 				moves = true;
 				velocity.y = -angleSpeedY;
+				angleSpeedX += 6.5f;
+
 				// if (gemType == 4 && !collided)
 				// {
 				// 	player.addScore(-100);
