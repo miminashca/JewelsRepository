@@ -11,8 +11,8 @@ using System.Drawing;
     
     private float gravity;
     public float speed { get; private set; }
-    private int score;
-    private int boundary;
+    public int score { get; private set; }
+    public int boundary { get; private set; }
     public Player(string filename, int colls, int rows, TiledObject obg = null) : base("sprites/robotGuy_spritesheet.png", 12, 1 , -1, false, false)
     {
         gravity = .3f;
@@ -30,51 +30,6 @@ using System.Drawing;
 
     public void Update()
     {
-        Animate(0.06f);
-        if (Input.GetKey(Key.LEFT))
-        {
-            if (x > boundary)
-            {
-                x -= speed;
-            }
-            SetCycle(6, 6);
-            Mirror(true, false);
-
-        }
-        else if (Input.GetKey(Key.RIGHT))
-        {
-            if (x < game.width - boundary)
-            {
-                x += speed;
-            }
-            SetCycle(6, 6);
-            Mirror(false, false);
-        }
-        else
-        {
-            SetCycle(0, 6);
-        }
-
-        //velocity.y += gravity;
-
-        // if(MoveUntilCollision(0, velocity.y) != null)
-        // {
-        //     velocity.y = 0;
-        //     isOnGround = true;
-        // }
-
-        // GameObject[] collidingObjects = GetCollisions();
-        // foreach (GameObject collidingObject in collidingObjects)
-        // {
-        //     if (collidingObject is PickUp)
-        //     {
-        //         collidingObject.LateDestroy();
-        //         //Console.WriteLine();
-        //     }
-        // } 
-        
-        Animate(0.05f);
-
     }
 
     // protected override Collider createCollider()

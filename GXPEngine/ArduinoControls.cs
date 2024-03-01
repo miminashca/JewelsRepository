@@ -33,19 +33,7 @@ class ArduinoControls : GameObject
         // Delay the file usage a little to prevent an exception and check if the file is being used
         if (Time.time - lastUpdateTime > updateInterval && SerialPort.GetPortNames().Length != 0)
         {
-            port.Open();
-            port.DiscardInBuffer();
-            port.DiscardOutBuffer();
-            string incomingData = port.ReadLine();
-            port.Close();
-            incomingData = incomingData.Trim();
-            string[] incomingString = incomingData.Split(new char[] { ',' });
-            //foreach (string str in incomingString)
-            //{
-            //    Console.WriteLine(str);
-            //}
-            //Console.WriteLine(incomingString.Length);
-            //Console.WriteLine();
+            string[] incomingString = ReadFile();
             // Incase data is not read properly it preserves the previous value instead
             if (incomingString.Length == 5)
             {
@@ -77,26 +65,73 @@ class ArduinoControls : GameObject
                     else { platform.rotation = roll * -1; }
                     previousYaw = yaw;
                 }
-                //Console.WriteLine("Left button pressed: {0} Right button pressed: {1}", leftButtonPressed, rightButtonPressed);
+                player.Animate(0.06f);
                 if (leftButtonPressed)
                 {
-                    player.MoveUntilCollision(-player.speed, 0);
-                    player.SetCycle(0, 3);
+                    if (player.x > player.boundary)
+                    {
+                        player.x -= player.speed;
+                    }
+                    player.SetCycle(6, 6);
                     player.Mirror(true, false);
-
                 }
                 else if (rightButtonPressed)
                 {
-                    player.MoveUntilCollision(player.speed, 0);
-                    player.SetCycle(0, 3);
+                    if (player.x < game.width - player.boundary)
+                    {
+                        player.x += player.speed;
+                    }
+                    player.SetCycle(6, 6);
                     player.Mirror(false, false);
                 }
                 else
                 {
-                    player.SetCycle(4, 3);
+                    player.SetCycle(0, 6);
                 }
+                player.Animate(0.05f);
             }
             lastUpdateTime = Time.time;
         }
+    }
+
+    public bool ButtonPressed()
+    {
+        if (SerialPort.GetPortNames().Length != 0)
+        {
+            string[] incomingString = ReadFile();
+            // Incase data is not read properly it preserves the previous value instead
+            if (incomingString.Length == 5)
+            {
+                if (incomingString[3] != "" && incomingString[3] != null)
+                {
+                    if (Convert.ToSingle(incomingString[3]) < 0.5f) { leftButtonPressed = true; }
+                    else { leftButtonPressed = false; }
+                }
+                if (incomingString[4] != "" && incomingString[4] != null)
+                {
+                    if (Convert.ToSingle(incomingString[4]) < 0.5f) { rightButtonPressed = true; }
+                    else { rightButtonPressed = false; }
+                }
+                if (leftButtonPressed || rightButtonPressed) { return true; }
+            }
+            return false;
+        }
+        return false;
+    }
+
+    string[] ReadFile()
+    {
+        if (!port.IsOpen)
+        {
+            port.Open();
+            port.DiscardInBuffer();
+            port.DiscardOutBuffer();
+            string incomingData = port.ReadLine();
+            port.Close();
+            incomingData = incomingData.Trim();
+            string[] incomingString = incomingData.Split(new char[] { ',' });
+            return incomingString;
+        }
+        return null;
     }
 }

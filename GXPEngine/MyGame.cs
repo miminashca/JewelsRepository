@@ -7,6 +7,7 @@ public class MyGame : Game
 	private Level level;
 	HUD hud;
 	LifeCounter lifeCounter;
+	ArduinoControls arduinoControls;
 
 	private Sound themeSound;
 	private SoundChannel themeMusicChannel;
@@ -48,7 +49,8 @@ public class MyGame : Game
             highScore = 0;
         }
 
-        if (level != null && Input.AnyKeyDown() && lifeCounter.gameOver)
+		Console.WriteLine(currentFps);
+        if (level != null && lifeCounter.gameOver && arduinoControls.ButtonPressed())
 		{
 			menuSound.Play();
 			level.cleanLevel();
@@ -113,5 +115,6 @@ public class MyGame : Game
         // Doing this so the game has access to the game over variable and can reset the game.
         lifeCounter = FindObjectOfType<LifeCounter>();
         hud.SetObjects(player, lifeCounter, highScore);
+		arduinoControls = FindObjectOfType<ArduinoControls>();
     }
 }
